@@ -39,7 +39,7 @@ public class Producer {
         String message = "Hello World!";
         // basicPublish(String exchange, String routingKey, BasicProperties props, byte[] body)
         // 参数1 exchange ：交换器
-        // 参数2 routingKey ： 路由键
+        // 参数2 routingKey ： 路由键，我们将要把消息发送到哪个队列
         // 参数3 props ： 消息的其他参数
         // 参数4 body ： 消息体
         channel.basicPublish("", QUEUE_NAME, null, message.getBytes());

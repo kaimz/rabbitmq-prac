@@ -18,10 +18,14 @@ public class Consumer {
     public static void main(String[] args) throws IOException, TimeoutException {
         // 创建连接
         ConnectionFactory factory = new ConnectionFactory();
-        // 设置 RabbitMQ 的主机名
+        // 设置 RabbitMQ 的主机名，默认localhost
         factory.setHost("k.wuwii.com");
-        // 默认账户密码 guest
-        factory.setPort(5672); // 默认 端口5671
+        // 设置端口， 默认 端口5672
+        factory.setPort(5672);
+        // 设置 Username，默认 guest
+        factory.setUsername("kronchan");
+        // 设置 Password，默认 guest
+        factory.setPassword("123456");
         // 创建一个连接
         Connection connection = factory.newConnection();
         // 创建一个通道
@@ -36,7 +40,7 @@ public class Consumer {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         // 创建队列消费者
-        DefaultConsumer consumer = new DefaultConsumer(channel) {
+        com.rabbitmq.client.Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,
                                        AMQP.BasicProperties properties, byte[] body) throws IOException {
@@ -46,7 +50,7 @@ public class Consumer {
         };
         // basicConsume(String queue, boolean autoAck, Consumer callback)
         // 参数1 queue ：队列名
-        // 参数2 autoAck ： 是否自动ACK
+        // 参数2 autoAck ： 是否自动ACK，消息应答，为true关闭它
         // 参数3 callback ： 消费者对象的一个接口，用来配置回调
         channel.basicConsume(QUEUE_NAME, true, consumer);
     }
