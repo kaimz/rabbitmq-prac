@@ -26,7 +26,7 @@ public class ConsumerQueue {
             Channel channel = connection.createChannel();
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-            String worker = " Consumer " + i;
+            final String worker = " Consumer " + i;
             Consumer consumer = new DefaultConsumer(channel) {
                 @Override
                 public void handleDelivery(String consumerTag, Envelope envelope,

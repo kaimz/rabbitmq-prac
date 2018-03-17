@@ -22,11 +22,11 @@ public class ConsumerDurability {
         factory.setUsername("kronchan");
         factory.setPassword("123456");
         Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+        final Channel channel = connection.createChannel();
         // durable 参数设置为 true，消息持久化
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
 
-        String worker = " Consumer test";
+        final String worker = " Consumer test";
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,

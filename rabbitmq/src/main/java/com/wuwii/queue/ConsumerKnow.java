@@ -22,10 +22,10 @@ public class ConsumerKnow {
         factory.setUsername("kronchan");
         factory.setPassword("123456");
         Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+        final Channel channel = connection.createChannel();
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-        String worker = " Consumer test";
+        final String worker = " Consumer test";
         Consumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope,
