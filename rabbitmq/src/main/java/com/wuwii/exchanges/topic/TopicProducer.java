@@ -31,6 +31,7 @@ public class TopicProducer {
         String message = "error log";
         channel.basicPublish(EXCHANGES_NAME, TOPICS[0], null, "猪猪".getBytes());
         channel.basicPublish(EXCHANGES_NAME, TOPICS[1], null, "亚洲女性".getBytes());
+        channel.basicPublish(EXCHANGES_NAME, "", null, "测试为空的路由键，*通配符能否接收到".getBytes()); // 测试为空的路由键，*通配符能否接收到
         System.out.println(" >>>>>>> sent logs");
         // 生产者 END
         channel.close();
