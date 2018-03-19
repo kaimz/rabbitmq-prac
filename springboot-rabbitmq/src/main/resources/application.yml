@@ -7,5 +7,5 @@ spring:
     username: kronchan
     password: 123456
     #virtual-host: test
-    publisher-confirms: true # 开启确认消息是否被消费者使用，需要设置 true
+    publisher-confirms: true # 开启确认消息是否到达交换器，需要设置 true
     publisher-returns: true # 开启确认消息是否到达队列，需要设置 true
