@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: RabbitMQ-Demo
+  rabbitmq:
+    host: k.wuwii.com
+    port: 5672
+    username: kronchan
+    password: 123456
+    #virtual-host: test
+    publisher-confirms: true # 需要消息确认机制，需要设置 true
