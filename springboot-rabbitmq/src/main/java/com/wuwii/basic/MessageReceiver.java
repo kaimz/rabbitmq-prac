@@ -21,7 +21,8 @@ public class MessageReceiver implements ChannelAwareMessageListener {
             byte[] body = message.getBody();
             log.info(">>>>>>> receive： " + new String(body));
         } finally {
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); // 确认成功消费
+            // 确认成功消费，否则消息会转发给其他的消费者，或者进行重试
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         }
     }
 
